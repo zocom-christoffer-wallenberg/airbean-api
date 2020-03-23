@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const router = new Router()
 const fs = require('fs');
+const { generateOrderNr, generateETA } = require('../utils/utils');
 
 router.get('/', async (req, res) => {
     const menu = fs.createReadStream('data/menu.json');
@@ -9,8 +10,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const order = {
-        eta: 13,
-        orderNr: 'SW921389B',
+        eta: generateETA(),
+        orderNr: generateOrderNr(),
     }
 
     setTimeout(() => {
